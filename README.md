@@ -37,7 +37,7 @@ i.e.:
 and a new .xml inside `~/.local/share/gnome-background-properties/ ` 
 named custom_slide_shows.xml  
 
-Then simply open Settings -> Appearance and select one of the new slideshow wallpapers
+Then simply open __Settings --> Appearance__ and select one of the new slideshow wallpapers.
 
 You can softlink the script inside your `bin` so it can be used from anywhere without  
 having to use its full path to call it each time.  
