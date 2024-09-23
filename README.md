@@ -1,10 +1,13 @@
 # gnome-slideshows
+
 ## script to automate the creation of .xml files for setting up slideshow background on GNOME.
+
+### Works on GNOME version 46, I haven't tested other versions and I don't think I will.  
 
 ### info
 
 The directory structure must look like this, and each folder  
-will become a background slideshow  
+will become a background slideshow.  
 .  
 ├── Folder_1  
 │   ├── 6mZeJ5F.png  
@@ -31,7 +34,13 @@ using `-i` for the path, `-s` for the static time, and `-t` for the transition t
 Then you end up with a new .xml file for each Folder_*  
 i.e.:  
 `Folder_1_slideshow.xml`, `Folder_2_slideshow.xml` and, `Folder_3_slideshow.xml`  
-and a new .xml inside ~/.local/share/gnome-background-properties/  
+and a new .xml inside `~/.local/share/gnome-background-properties/ ` 
 named custom_slide_shows.xml  
 
 Then simply open Settings -> Appearance and select one of the new slideshow wallpapers
+
+You can softlink the script inside your `bin` so it can be used from anywhere without  
+having to use its full path to call it each time.  
+```bash
+ln -s /script/full/path/make_slideshows.py ~./local/bin/make_slideshows.py
+```
