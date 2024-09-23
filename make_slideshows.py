@@ -24,9 +24,6 @@ def gen_xmls(base_directory, static_t, transition_t):
         folder_path = os.path.join(base_directory, folder)
         f_paths = get_absolute_paths(folder_path)
 
-        # Modify the duration here
-        # Both for how long the image stays (static)
-        # and how fast the transition happens (transition)
         static = f"""  
     <static>
         <duration>{static_t}</duration>
@@ -55,6 +52,7 @@ def gen_xmls(base_directory, static_t, transition_t):
                 xml += static.format(img=f_paths[i])
 
         xml += end
+    
         output = f"{folder}_slideshow.xml"
         output_path = os.path.join(base_directory, output)
         with open(output_path, "w") as xml_write:
