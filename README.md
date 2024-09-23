@@ -23,17 +23,14 @@ will become a background slideshow
 │   └── fggJQ7f.jpeg  
 └── update_slideshows.py  
 
-After running the program like so:  
+Run the program like so:  
 ```bash
-$ ./update_slideshows.py /path/to/parent/folder
+$ ./update_slideshows.py -i /path/to/parent/folder -s 300 -t 0.5
 ```
-or if you are on the parent directory, simply
-```bash
-$ ./update_slideshows.py
-```
-you end up with a new .xml file for each Folder_*  
+using `-i` for the path, `-s` for the static time, and `-t` for the transition time.  
+Then you end up with a new .xml file for each Folder_*  
 i.e.:  
-Folder_1_slideshow.xml, Folder_2_slideshow.xml, Folder_3_slideshow.xml  
+`Folder_1_slideshow.xml`, `Folder_2_slideshow.xml` and, `Folder_3_slideshow.xml`  
 and a new .xml inside ~/.local/share/gnome-background-properties/  
 named custom_slide_shows.xml  
 

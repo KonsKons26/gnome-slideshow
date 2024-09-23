@@ -13,7 +13,7 @@ def get_absolute_paths(folder_path):
     return abs_paths
 
 
-def gen_xmls(base_directory):
+def gen_xmls(base_directory, static_t, transition_t):
     folders = []
     with os.scandir(base_directory) as entries:
         for entry in entries:
@@ -27,17 +27,17 @@ def gen_xmls(base_directory):
         # Modify the duration here
         # Both for how long the image stays (static)
         # and how fast the transition happens (transition)
-        static = """  
+        static = f"""  
     <static>
-        <duration>300</duration>
-        <file>{img}</file>
+        <duration>{static_t}</duration>
+        <file>{{img}}</file>
     </static>"""
 
-        transition = """    
+        transition = f"""    
     <transition>
-        <duration>0.5</duration>
-        <from>{img1}</from>
-        <to>{img2}</to>
+        <duration>{transition_t}</duration>
+        <from>{{img1}}</from>
+        <to>{{img2}}</to>
     </transition>"""
 
         start = """<?xml version="1.0" ?>
@@ -91,20 +91,32 @@ def update_gnome_properties(base_directory):
     with open(properties_xml, "w") as write_xml:
         write_xml.write(xml)
 
-
 def main():
     parser = argparse.ArgumentParser(description="Generate slideshows from folders and update GNOME properties.")
     parser.add_argument(
-        "directory", 
-        nargs="?", 
+        "-i", "--input", 
         default=os.getcwd(), 
         help="The base directory containing folders. Defaults to the current working directory."
     )
+    parser.add_argument(
+        "-s", "--static-duration", 
+        type=int, 
+        default=300, 
+        help="Duration (in seconds) for each image to remain static. Defaults to 300 seconds."
+    )
+    parser.add_argument(
+        "-t", "--transition-duration", 
+        type=float, 
+        default=0.5, 
+        help="Duration (in seconds) for the transition between images. Defaults to 0.5 seconds."
+    )
+    
     args = parser.parse_args()
+    base_directory = args.input
+    static_t = args.static_duration
+    transition_t = args.transition_duration
 
-    base_directory = args.directory
-
-    gen_xmls(base_directory)
+    gen_xmls(base_directory, static_t, transition_t)
     update_gnome_properties(base_directory)
 
 
