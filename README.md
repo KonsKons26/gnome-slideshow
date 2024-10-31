@@ -8,6 +8,7 @@
 
 The directory structure must look like this, and each folder
 will become a background slideshow.
+```
 .
 ├── Folder_1
 │   ├── 6mZeJ5F.png
@@ -25,7 +26,7 @@ will become a background slideshow.
 │   ├── exfQ9Pm.png
 │   └── fggJQ7f.jpeg
 └── update_slideshows.py
-
+```
 Run the program like so:
 
 ```bash
